@@ -1,0 +1,13 @@
+<div class="row">
+
+    <% if user_signed_in? %>
+        <%= render 'tweets/form', tweet: @tweet %>
+    <% end %>
+
+    <% @tweets.each do |tweet| %>
+        <%= render 'tweets/single_tweet', tweet: tweet %>
+    <% end %>
+    <hr>
+    <%# paginate @tweets %>
+    <%= link_to_next_page @tweets, 'Mostrar mas' %>
+</div>

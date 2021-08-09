@@ -1,0 +1,19 @@
+<div class="col-12 border border-info p-3 mt-2">
+    <div class="text-right">
+        <%= link_to "<small class='text-muted'><i class='fas fa-comment-dots'></i> ".html_safe+time_ago_in_words(tweet.created_at)+" ago.</small>".html_safe, tweet %>
+    </div>
+    <%= image_tag (tweet.user.avatar), class: "avatar-in-tweet rounded" %>
+    <%= tweet.content %>
+    <br>
+    <div class="d-inline">
+        <%= tweet.count_rt %>
+            <%= link_to "<i class='fas fa-retweet text-#{tweet.count_rt > 0 ? "success" : "muted"}'></i>".html_safe, tweet_retweet_path(tweet), method: :post %>
+    </div>
+    <div class="float-right">
+            <%= link_to "<i class='#{tweet.like_icon(current_user)}'></i>".html_safe, tweet_likes_path(tweet), method: :post %>
+        <%= tweet.likes.count %>
+    </div>
+    <% if tweet.is_retweet? %>
+        <small class='text-muted'>Retweeted from <%= link_to 'here!', tweet.tweet_ref %></small>
+    <% end %>
+</div>
