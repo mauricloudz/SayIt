@@ -1,3 +1,52 @@
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background: linear-gradient(45deg, rgba(189,207,255,1) 0%, rgba(255,255,255,1) 50%, rgba(199,245,255,1) 100%) fixed;
+    background-size: 400% 400%;
+    position: relative;
+    animation: change 10s ease-in-out infinite;
+}
+
 .avatar-in-tweet {
-    width: 50px;
+    object-fit: cover;
+    height: auto;
+    width: auto;
+}
+
+.fix-height {
+    height: calc(200px - 2em);
+}
+
+.custom-bg {
+    background-color: #F6FBFF;
+}
+
+.navlogocustom {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2em;
+    margin-bottom: calc(-30px);
+    position: absolute;
+    z-index: 2;
+}
+
+.navimage {
+    margin-left: -93px;
+    position: absolute;
+    width: 280px;
+    height: auto;
+    z-index: 1;
+}
+
+.navlogocustom:hover {animation:rubberBand 1.2s ease}
+@keyframes rubberBand {from{transform:scale3d(1,1,1)}30%{transform:scale3d(1.25,0.75,1)}40%{transform:scale3d(0.75,1.25,1)}50%{transform:scale3d(1.15,0.85,1)}65%{transform:scale3d(.95,1.05,1)}75%{transform:scale3d(1.05,.95,1)}to{-webkit-transform:scale3d(1,1,1);transform:scale3d(1,1,1)}}
+
+@keyframes change {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }

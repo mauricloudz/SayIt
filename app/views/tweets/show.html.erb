@@ -2,17 +2,21 @@
 <div class="text-center">
 <p class="my-5">
   <strong>@<%= @tweet.user.username %> said:</strong><br>
-  <i>"<%= @tweet.content %>"</i>
+  <i>"<%= @tweet.content.html_safe %>"</i>
 </p>
 
-<small>
-Liked by: <br>
-<% @tweet.liking_users.each do |user| %>
-<%= image_tag(user.avatar, class: 'avatar-in-tweet rounded') %>
+<% if @tweet.liking_users.count == 0 %>
+  <small>No one likes this :( </small>
+<% else %>    
+  <small>
+    Liked by: <br>
+    <% @tweet.liking_users.each do |user| %>
+      <%= image_tag(user.avatar, class: 'avatar-in-tweet rounded', title: user.username, data: { toggle: 'tooltip', placement: 'bottom' }) %>
+    <% end %>
+  </small>
 <% end %>
-</small>
 </div>
 <br>
 <div class="text-center">
-<%= link_to 'Back', root_path, class: 'btn btn-primary' %>
+<%= link_to 'Back', root_path, class: 'btn-sm btn-primary' %>
 </div>

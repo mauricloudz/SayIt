@@ -1,14 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="<%= root_path %>">Twitter</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <%= image_tag "splashlogo.png", class: 'navimage' %>
+      <a class="navbar-brand navlogocustom" href="<%= root_path %>">Say it!</a>
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+          <li><%= form_tag(root_path, method: :get) do %>
+            <div class="d-flex">
+                <%= text_field_tag(:search, params[:search], class: 'w-50 form-control d-inline') %>
+                <%= button_tag type: 'submit', class: "ml-2 btn btn-primary" do %>
+                    <i class="fas fa-search"></i>
+                <% end %>
+                <%= link_to "Limpiar", root_path, :class => 'btn btn-info ml-2' %>
+            </div>
+          <% end %></li>
         <% if user_signed_in? %>
-          <li class="nav-link">Hola <%= current_user.username %>!</li>
-          <li class="nav-item"><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+          <li class="nav-item active"><%= link_to "Hola #{current_user.username}!", root_path, class: 'nav-link' %> <span class="sr-only">(current)</span></li>
+          <% if current_user.admin? %>
+            <li class="nav-item"><%= link_to 'Admin', admin_root_path, class: 'nav-link' %></li>
+          <% end %>
+          <li class="nav-item"><%= link_to 'Explorar', all_tweets_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Cerrar sesión', destroy_user_session_path, class: 'nav-link' %></li>
         <% else %>
           <li class="nav-item"><%= link_to 'Registro', new_user_registration_path, class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to 'Login', new_user_session_path, class: 'nav-link' %></li>
