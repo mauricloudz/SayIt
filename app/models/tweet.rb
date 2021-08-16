@@ -19,7 +19,7 @@ class Tweet < ApplicationRecord
     self.content.split(" ").each do |word|
       if word.start_with?("#")
         word_clean = word.gsub("#", " ")
-        new_content = '<a href="/?search=#{word_clean}">#{word} </a>'
+        new_content = "<a href='/?search=#{word_clean}'>#{word}</a>"+" "
         # new_content += link_to(word, Rails.application.routes.url_helpers.root_path+"?search="+word_clean)+" "
       else
         new_content += word + " "
