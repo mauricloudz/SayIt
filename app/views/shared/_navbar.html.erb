@@ -1,15 +1,15 @@
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
   <div class="container">
       <%= image_tag "splashlogo.png", class: 'navimage' %>
       <a class="navbar-brand navlogocustom" href="<%= root_path %>">Say it!</a>
     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav ml-auto text-right">
           <li><%= form_tag(root_path, method: :get) do %>
-            <div class="d-flex">
+            <div class="d-inline ml-auto">
                 <%= text_field_tag(:search, params[:search], class: 'w-50 form-control d-inline') %>
                 <%= button_tag type: 'submit', class: "ml-2 btn btn-primary" do %>
                     <i class="fas fa-search"></i>
